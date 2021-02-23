@@ -1,0 +1,1 @@
+# Serval Minecraft Server Status
