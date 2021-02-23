@@ -7,6 +7,7 @@
     export let data: ServerStatus;
     let minecraftHtml = MinecraftTextJS.toHTML(data.description);
     let expand = false;
+    let badgeColor = data.online ? "badge-success" : "badge-danger";
 </script>
 
 <div class="serverStatus">
@@ -15,13 +16,15 @@
             <div
                 class="d-flex justify-content-between align-items-center w-100"
             >
-                <h3>
-                    {#if data.online}
-                        <span class="badge badge-success">{data.name}</span>
-                    {:else}
-                        <span class="badge badge-danger">{data.name}</span>
-                    {/if}
-                </h3>
+                <h2>
+                    <div class="row pl-2">
+                        <span class="col badge {badgeColor}">{data.name}</span>
+                        <span class="col badge badge-primary"
+                            >{data.playerCount}</span
+                        >
+                    </div>
+                </h2>
+
                 <h3>
                     {#if data.description !== ""}
                         <div
@@ -31,8 +34,6 @@
                     {/if}
                 </h3>
                 <h2>
-                    {data.playerCount}
-
                     <button
                         type="button"
                         class="btn btn-white"
