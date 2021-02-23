@@ -2,7 +2,7 @@
     import type { ServerStatus } from "../types/ServerStatusType";
     import MinecraftTextJS from "minecraft-text-js";
     import PlayerCard from "./PlayerCard.svelte";
-    import { fade, slide } from "svelte/transition";
+    import { slide } from "svelte/transition";
 
     export let data: ServerStatus;
     let minecraftHtml = MinecraftTextJS.toHTML(data.description);
@@ -33,19 +33,23 @@
                         />
                     {/if}
                 </h3>
-                <h2>
-                    <button
-                        type="button"
-                        class="btn btn-white"
-                        on:click={() => (expand = !expand)}
-                    >
-                        {#if expand}
-                            <ion-icon name="chevron-up-outline" />
-                        {:else}
-                            <ion-icon name="chevron-down-outline" />
-                        {/if}
-                    </button>
-                </h2>
+                {#if data.playerCount > 0}
+                    <h2>
+                        <button
+                            type="button"
+                            class="btn btn-white"
+                            on:click={() => (expand = !expand)}
+                        >
+                            {#if expand}
+                                <ion-icon name="chevron-up-outline" />
+                            {:else}
+                                <ion-icon name="chevron-down-outline" />
+                            {/if}
+                        </button>
+                    </h2>
+                {:else}
+                    <div />
+                {/if}
             </div>
         </div>
         {#if expand}
