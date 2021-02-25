@@ -27,10 +27,7 @@
 
                 <h3>
                     {#if data.description !== ""}
-                        <div
-                            contenteditable="true"
-                            bind:innerHTML={minecraftHtml}
-                        />
+                        {@html minecraftHtml}
                     {/if}
                 </h3>
                 {#if data.playerCount > 0}
